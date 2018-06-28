@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skarbnicaskarbnika/Pages/Page0.dart';
-import 'package:skarbnicaskarbnika/Pages/Page1.dart';
-import 'package:skarbnicaskarbnika/Pages/Page2.dart';
+import 'package:skarbnicaskarbnika/pages/Page0.dart';
+import 'package:skarbnicaskarbnika/pages/Page1.dart';
+import 'package:skarbnicaskarbnika/pages/Page2.dart';
 
 void main() => runApp(new SkarbnicaSkarbnikaApp());
 
