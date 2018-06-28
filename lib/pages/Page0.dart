@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:skarbnicaskarbnika/internal/data.dart';
+import 'package:skarbnicaskarbnika/internal/ui_common.dart';
+import 'package:skarbnicaskarbnika/internal/common.dart';
 import 'dart:async';
+
+bool isDone = false;
 
 class Page0 extends StatefulWidget {
   @override
@@ -10,26 +14,9 @@ class Page0 extends StatefulWidget {
 class _Page0 extends State<Page0> {
   List<Widget> cards;
 
-  List<Widget> _buildTiles() {
-    int _len = _calculateLength();
-    List<Widget> tiles = new List<Widget>(_len);
-    for (int i = 0; i < _len; i++) {
-      tiles[i] = new ListsCard(i);
-    }
-    return tiles;
-  }
-
-  int _calculateLength() {
-    int _len = 0;
-    for (int i = 0; i < lists.allLists.length; i++) {
-      if (!lists.allLists[i].isDone) _len++;
-    }
-    return _len;
-  }
-
   @override
   Widget build(BuildContext context) {
-    cards = _buildTiles();
+    cards = buildTiles(isDone);
     var column = new Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: cards,
@@ -38,7 +25,7 @@ class _Page0 extends State<Page0> {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Ekran główny"),
+        title: new Text("Ongoing"),
       ),
       body: new Container(
         padding: const EdgeInsets.only(bottom: 2.0),
@@ -50,7 +37,7 @@ class _Page0 extends State<Page0> {
           onPressed: () {
             _fabMenuBuilder(context, new StatefulDialog()).then((Null n) {
               setState(() {
-                cards = _buildTiles();
+                cards = buildTiles(isDone);
               });
             });
           },
@@ -66,37 +53,6 @@ Future<Null> _fabMenuBuilder(BuildContext context, Widget child) async {
       builder: (BuildContext context) => child);
 }
 
-class ListsCard extends StatelessWidget {
-  final int index;
-
-  ListsCard(this.index);
-
-  @override
-  Widget build(BuildContext context) {
-    final double textSize = 20.0;
-    final TextStyle textStyle = new TextStyle(fontSize: textSize);
-    return new Container(
-        padding: const EdgeInsets.only(bottom: 1.0),
-        child: new Card(
-          child: new Container(
-            padding: const EdgeInsets.all(20.0),
-            child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Text(lists.allLists[index].name, style: textStyle),
-                  new Text(
-                      "Amount: " +
-                          lists.allLists[index].recalculatedAmount.toString(),
-                      style: new TextStyle(color: Colors.grey)),
-                  new Text(
-                    "Deadline: " + simpleDate(lists.allLists[index].date),
-                    style: new TextStyle(color: Colors.grey),
-                  )
-                ]),
-          ),
-        ));
-  }
-}
 
 class StatefulDialog extends StatefulWidget {
   _StatefulDialog createState() => new _StatefulDialog();
@@ -208,8 +164,4 @@ class _StatefulDialog extends State<StatefulDialog> {
       });
     }
   }
-}
-
-String simpleDate(DateTime d) {
-  return d.day.toString() + "/" + d.month.toString() + "/" + d.year.toString();
 }

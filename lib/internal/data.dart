@@ -108,6 +108,10 @@ class Lists extends Object with _$ListsSerializerMixin {
   void updatePersonName(int index, String name) {
     people[index].name = name;
   }
+
+  void addPerson(String name) {
+    people.add(new Person(name));
+  }
 }
 
 @JsonSerializable()

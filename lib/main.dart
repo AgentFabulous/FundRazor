@@ -45,16 +45,16 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: new BottomNavigationBar(
               items: [
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.home),
-                  title: new Text("Ekran główny"),
+                  icon: new Icon(Icons.history),
+                  title: new Text("Ongoing"),
                 ),
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.list),
-                  title: new Text("Zbiórki"),
+                  icon: new Icon(Icons.done),
+                  title: new Text("Completed"),
                 ),
                 new BottomNavigationBarItem(
                   icon: new Icon(Icons.settings),
-                  title: new Text("Ustawienia"),
+                  title: new Text("Settings"),
                 ),
               ],
               onTap: navTapped,
@@ -85,8 +85,8 @@ class _MainPageState extends State<MainPage> {
       this.page = page;
     });
   }
-}
 
-void navTapped (int page) {
-  pageControl.animateToPage(page, duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  void navTapped (int page) {
+    pageControl.animateToPage(page, duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
 }

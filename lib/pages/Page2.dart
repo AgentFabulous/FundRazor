@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skarbnicaskarbnika/internal/ui_common.dart';
 
 class Page2 extends StatelessWidget {
 
@@ -11,7 +12,7 @@ class Page2 extends StatelessWidget {
     var column = new Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        new CenteredCard(
+        new CenterCard(
           title: new Text(
             "Page2",
             style: myTextStyle,
@@ -23,31 +24,12 @@ class Page2 extends StatelessWidget {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Ustawienia"),
+        title: new Text("Settings"),
       ),
       body: new Container(
         padding: const EdgeInsets.only(bottom: 2.0),
         child: new Container(
           child: new SingleChildScrollView(child: column),
-        ),
-      ),
-    );
-  }
-}
-
-class CenteredCard extends StatelessWidget {
-  final Widget title;
-
-  CenteredCard({this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      padding: const EdgeInsets.only(bottom: 1.0),
-      child: new Card(
-        child: new Container(
-            padding: const EdgeInsets.all(20.0),
-            child: new Center(child: this.title)
         ),
       ),
     );
