@@ -8,21 +8,31 @@ class Page0 extends StatefulWidget {
 }
 
 class _Page0 extends State<Page0> {
+  List<Widget> cards;
+
+  List<Widget> _buildTiles() {
+    int _len = _calculateLength();
+    List<Widget> tiles = new List<Widget>(_len);
+    for (int i = 0; i < _len; i++) {
+      tiles[i] = new ListsCard(i);
+    }
+    return tiles;
+  }
+
+  int _calculateLength() {
+    int _len = 0;
+    for (int i = 0; i < lists.allLists.length; i++) {
+      if (!lists.allLists[i].isDone) _len++;
+    }
+    return _len;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final double myTextSize = 30.0;
-    final TextStyle myTextStyle =
-        new TextStyle(color: Colors.grey, fontSize: myTextSize);
+    cards = _buildTiles();
     var column = new Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        new CenteredCard(
-          title: new Text(
-            "Page0",
-            style: myTextStyle,
-          ),
-        )
-      ],
+      children: cards,
     );
 
     return new Scaffold(
@@ -37,7 +47,13 @@ class _Page0 extends State<Page0> {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-          onPressed: () => _fabMenuBuilder(context, new StatefulDialog()),
+          onPressed: () {
+            _fabMenuBuilder(context, new StatefulDialog()).then((Null n) {
+              setState(() {
+                cards = _buildTiles();
+              });
+            });
+          },
           child: new Icon(Icons.add)),
     );
   }
@@ -50,21 +66,35 @@ Future<Null> _fabMenuBuilder(BuildContext context, Widget child) async {
       builder: (BuildContext context) => child);
 }
 
-class CenteredCard extends StatelessWidget {
-  final Widget title;
+class ListsCard extends StatelessWidget {
+  final int index;
 
-  CenteredCard({this.title});
+  ListsCard(this.index);
 
   @override
   Widget build(BuildContext context) {
+    final double textSize = 20.0;
+    final TextStyle textStyle = new TextStyle(fontSize: textSize);
     return new Container(
-      padding: const EdgeInsets.only(bottom: 1.0),
-      child: new Card(
-        child: new Container(
+        padding: const EdgeInsets.only(bottom: 1.0),
+        child: new Card(
+          child: new Container(
             padding: const EdgeInsets.all(20.0),
-            child: new Center(child: this.title)),
-      ),
-    );
+            child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Text(lists.allLists[index].name, style: textStyle),
+                  new Text(
+                      "Amount: " +
+                          lists.allLists[index].recalculatedAmount.toString(),
+                      style: new TextStyle(color: Colors.grey)),
+                  new Text(
+                    "Deadline: " + simpleDate(lists.allLists[index].date),
+                    style: new TextStyle(color: Colors.grey),
+                  )
+                ]),
+          ),
+        ));
   }
 }
 
@@ -78,7 +108,6 @@ class _StatefulDialog extends State<StatefulDialog> {
   double _amount;
 
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -133,13 +162,7 @@ class _StatefulDialog extends State<StatefulDialog> {
               onPressed: () => _selectDate(context),
             ),
             new Padding(padding: EdgeInsets.all(5.0)),
-            new Text(
-                _date.day.toString() +
-                    "/" +
-                    _date.month.toString() +
-                    "/" +
-                    _date.year.toString(),
-                textAlign: TextAlign.center),
+            new Text(simpleDate(_date), textAlign: TextAlign.center),
           ],
         ),
       ),
@@ -156,9 +179,12 @@ class _StatefulDialog extends State<StatefulDialog> {
             if (_formKey.currentState.validate()) {
               Navigator.of(context).pop();
               debugPrint("Data valid!" +
-                  "\nName: " + _name +
-                  "\nAmount: " + _amount.toString() +
-                  "\nDate: " + _date.toString());
+                  "\nName: " +
+                  _name +
+                  "\nAmount: " +
+                  _amount.toString() +
+                  "\nDate: " +
+                  _date.toString());
               lists.addToList(new Lists(_name, _amount, _date));
               writeData();
             }
@@ -182,4 +208,8 @@ class _StatefulDialog extends State<StatefulDialog> {
       });
     }
   }
+}
+
+String simpleDate(DateTime d) {
+  return d.day.toString() + "/" + d.month.toString() + "/" + d.year.toString();
 }

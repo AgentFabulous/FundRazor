@@ -67,13 +67,17 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     pageControl = new PageController();
-    restoreData();
+    restoreData().then((result) {
+      setState(() {});
+    }
+    );
   }
 
   @override
   void dispose(){
     super.dispose();
     pageControl.dispose();
+    writeData();
   }
 
   void onPageChange(int page){

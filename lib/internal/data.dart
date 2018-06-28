@@ -19,7 +19,9 @@ Future<String> get _localPath async {
 
 Future<File> get _localFile async {
   final path = await _localPath;
-  return File('$path/$dataJSON');
+  String _fileName = '$path/$dataJSON';
+  print("Accesing $_fileName");
+  return File(_fileName);
 }
 
 Future<int> restoreData() async {
