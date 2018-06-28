@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skarbnicaskarbnika/pages/Page0.dart';
 import 'package:skarbnicaskarbnika/pages/Page1.dart';
 import 'package:skarbnicaskarbnika/pages/Page2.dart';
+import 'package:skarbnicaskarbnika/internal/data.dart';
 
 void main() => runApp(new SkarbnicaSkarbnikaApp());
 
@@ -26,6 +27,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int page = 0;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -65,6 +67,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     pageControl = new PageController();
+    restoreData();
   }
 
   @override

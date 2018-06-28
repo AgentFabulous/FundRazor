@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skarbnicaskarbnika/internal/data.dart';
 import 'dart:async';
 
 class Page0 extends StatefulWidget {
@@ -158,6 +159,8 @@ class _StatefulDialog extends State<StatefulDialog> {
                   "\nName: " + _name +
                   "\nAmount: " + _amount.toString() +
                   "\nDate: " + _date.toString());
+              lists.addToList(new Lists(_name, _amount, _date));
+              writeData();
             }
           },
         ),
