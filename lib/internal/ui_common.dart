@@ -72,12 +72,13 @@ class CenterCard extends StatelessWidget {
 
 List<Widget> buildTiles(bool isDone) {
   int _len = calculateLength(isDone);
+  int x = 0;
   List<Widget> tiles = new List<Widget>(_len);
   for (int i = 0; i < lists.allLists.length; i++) {
     if (isDone) {
-      if (lists.allLists[i].isDone) tiles[i] = new ListsCard(i);
+      if (lists.allLists[i].isDone) tiles[x++] = new ListsCard(i);
     } else {
-      if (!lists.allLists[i].isDone) tiles[i] = new ListsCard(i);
+      if (!lists.allLists[i].isDone) tiles[x++] = new ListsCard(i);
     }
   }
   return tiles;
