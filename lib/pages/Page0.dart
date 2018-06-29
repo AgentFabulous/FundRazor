@@ -17,7 +17,6 @@ class Page0 extends StatefulWidget {
 
 class _Page0 extends State<Page0> {
   List<Widget> cards;
-  final listsKey = GlobalKey<_Page0>();
 
   void triggerSetState() {
     setState(() {
@@ -29,7 +28,6 @@ class _Page0 extends State<Page0> {
   Widget build(BuildContext context) {
     cards = buildTiles(isDone, null);
     var column = new Column(
-      key: listsKey,
       children: cards,
     );
 
@@ -46,7 +44,7 @@ class _Page0 extends State<Page0> {
       ),
       floatingActionButton: new FloatingActionButton(
           onPressed: () {
-            _fabMenuBuilder(context, new StatefulDialog()).then((Null n) {
+            popupMenuBuilder(context, new StatefulDialog()).then((Null n) {
               setState(() {
                 cards = buildTiles(isDone, null);
               });
@@ -57,12 +55,6 @@ class _Page0 extends State<Page0> {
   }
 }
 
-Future<Null> _fabMenuBuilder(BuildContext context, Widget child) async {
-  return showDialog<Null>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) => child);
-}
 
 class StatefulDialog extends StatefulWidget {
   _StatefulDialog createState() => new _StatefulDialog();
@@ -95,7 +87,7 @@ class _StatefulDialog extends State<StatefulDialog> {
                             ),
                             validator: (value) {
                               if (value.isEmpty) {
-                                return 'Please enter an amount';
+                                return 'Please enter a name';
                               } else {
                                 _name = value;
                               }

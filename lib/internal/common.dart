@@ -1,4 +1,6 @@
 import 'package:skarbnicaskarbnika/internal/data.dart';
+import 'package:skarbnicaskarbnika/pages/Page0.dart';
+import 'package:skarbnicaskarbnika/pages/Page1.dart';
 
 String simpleDate(DateTime d) {
   return d.day.toString() + "/" + d.month.toString() + "/" + d.year.toString();
@@ -20,4 +22,18 @@ int calculateTotalAmount() {
     if (lists.allLists[i].isDone) sum += lists.allLists[i].recalculatedAmount;
   }
   return sum;
+}
+
+void updateStuff() {
+  try {
+    page1Interactive.triggerSetState();
+  } catch (e) {
+    // Do nothing
+  }
+  try {
+    page0Interactive.triggerSetState();
+  } catch (e) {
+    //Do nothing
+  }
+  writeData();
 }

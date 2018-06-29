@@ -78,11 +78,15 @@ class Lists extends Object with _$ListsSerializerMixin {
   }
 
   void recalculateAmount() {
-    int pLen = people.length;
-    recalculatedAmount = originalAmount.toInt() ~/ ((pLen == 0) ? 1 : pLen);
+    int pLen = (people.length == 0) ? 1 : people.length;
+    recalculatedAmount = (originalAmount.toInt() ~/ pLen) * pLen;
+    if (recalculatedAmount < originalAmount) {
+      recalculatedAmount += pLen;
+    }
   }
 
   bool checkStatus() {
+    recalculateAmount();
     bool isDone = true;
     for (Person p in people) {
       if (!p.hasPaid) {
@@ -107,10 +111,17 @@ class Lists extends Object with _$ListsSerializerMixin {
 
   void updatePersonName(int index, String name) {
     people[index].name = name;
+    recalculateAmount();
   }
 
   void addPerson(String name) {
     people.add(new Person(name));
+    recalculateAmount();
+  }
+
+  void deletePerson(int index) {
+    people.removeAt(index);
+    checkStatus();
   }
 }
 

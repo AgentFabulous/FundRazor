@@ -25,7 +25,7 @@ class _Page1 extends State<Page1> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           new Container(
-            child: new Text("Current amount",
+            child: new Text("Total amount raised",
                 style: new TextStyle(fontSize: 20.0, color: Colors.grey),
                 textAlign: TextAlign.center),
             padding: EdgeInsets.only(top: 80.0),
@@ -69,7 +69,7 @@ class _Page1 extends State<Page1> {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Ongoing"),
+        title: new Text("Completed"),
       ),
       body: new Container(
         padding: const EdgeInsets.only(bottom: 2.0),
