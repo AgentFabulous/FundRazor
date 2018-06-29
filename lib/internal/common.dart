@@ -13,3 +13,11 @@ int calculateLength(bool isDone) {
   }
   return _len;
 }
+
+int calculateTotalAmount() {
+  int sum = 0;
+  for (int i = 0; i < lists.allLists.length; i++) {
+    if (lists.allLists[i].isDone) sum += lists.allLists[i].recalculatedAmount;
+  }
+  return sum;
+}
