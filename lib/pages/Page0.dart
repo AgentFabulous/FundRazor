@@ -55,7 +55,6 @@ class _Page0 extends State<Page0> {
   }
 }
 
-
 class StatefulDialog extends StatefulWidget {
   _StatefulDialog createState() => new _StatefulDialog();
 }

@@ -41,7 +41,8 @@ class ListsCard extends StatelessWidget {
                   children: <Widget>[
                     new FlatButton(
                         onPressed: () {
-                          popupMenuBuilder(context, new DeleteListDialog(index)).then((Null n) {
+                          popupMenuBuilder(context, new DeleteListDialog(index))
+                              .then((Null n) {
                             updateStuff();
                           });
                         },
@@ -316,7 +317,6 @@ class DeletePersonDialog extends StatelessWidget {
   }
 }
 
-
 class DeleteListDialog extends StatelessWidget {
   final int index;
 
@@ -342,6 +342,7 @@ class DeleteListDialog extends StatelessWidget {
     ]);
   }
 }
+
 /// Functions
 List<Widget> buildTiles(bool isDone, Widget extra) {
   int _len =
