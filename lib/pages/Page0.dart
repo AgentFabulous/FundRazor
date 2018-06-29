@@ -5,20 +5,31 @@ import 'package:skarbnicaskarbnika/internal/common.dart';
 import 'dart:async';
 
 bool isDone = false;
+var page0Interactive;
 
 class Page0 extends StatefulWidget {
   @override
-  _Page0 createState() => new _Page0();
+  _Page0 createState() {
+    page0Interactive = new _Page0();
+    return page0Interactive;
+  }
 }
 
 class _Page0 extends State<Page0> {
   List<Widget> cards;
+  final listsKey = GlobalKey<_Page0>();
+
+  void triggerSetState() {
+    setState((){
+      cards = buildTiles(isDone, null);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    cards = buildTiles(isDone);
+    cards = buildTiles(isDone,null);
     var column = new Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      key: listsKey,
       children: cards,
     );
 
@@ -37,7 +48,7 @@ class _Page0 extends State<Page0> {
           onPressed: () {
             _fabMenuBuilder(context, new StatefulDialog()).then((Null n) {
               setState(() {
-                cards = buildTiles(isDone);
+                cards = buildTiles(isDone,null);
               });
             });
           },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skarbnicaskarbnika/internal/data.dart';
 import 'package:skarbnicaskarbnika/internal/common.dart';
+import 'package:skarbnicaskarbnika/pages/Page0.dart';
+import 'package:skarbnicaskarbnika/pages/Page1.dart';
 
 class ListsCard extends StatelessWidget {
   final int index;
@@ -12,7 +14,7 @@ class ListsCard extends StatelessWidget {
     final double textSize = 20.0;
     final TextStyle textStyle = new TextStyle(fontSize: textSize);
     return new Container(
-        padding: const EdgeInsets.only(top: 1.0),
+        padding: const EdgeInsets.only(top: 1.0, left: 15.0, right: 15.0),
         child: new Card(
           child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +44,14 @@ class ListsCard extends StatelessWidget {
                         child: new Text("Delete",
                             style: new TextStyle(color: Colors.blue))),
                     new FlatButton(
-                        onPressed: () => debugPrint("Edit"),
+                        onPressed: () {
+                          lists.allLists[index].isDone = !lists.allLists[index].isDone;
+                          if (lists.allLists[index].isDone)
+                            page0Interactive.triggerSetState();
+                          else
+                            page1Interactive.triggerSetState();
+                          writeData();
+                        },
                         child: new Text("Edit",
                             style: new TextStyle(color: Colors.blue))),
                   ],
@@ -70,10 +79,14 @@ class CenterCard extends StatelessWidget {
   }
 }
 
-List<Widget> buildTiles(bool isDone) {
-  int _len = calculateLength(isDone);
+List<Widget> buildTiles(bool isDone, Widget extra) {
+  int _len = (extra != null)?(calculateLength(isDone)+1):calculateLength(isDone);
   int x = 0;
-  List<Widget> tiles = new List<Widget>(_len);
+  List<Widget> tiles = new List<Widget>(_len+2);
+  if (extra!=null) {
+    tiles[x++] = extra;
+  }
+  tiles[x++] = new Padding(padding: EdgeInsets.all(15.0));
   for (int i = 0; i < lists.allLists.length; i++) {
     if (isDone) {
       if (lists.allLists[i].isDone) tiles[x++] = new ListsCard(i);
@@ -81,6 +94,7 @@ List<Widget> buildTiles(bool isDone) {
       if (!lists.allLists[i].isDone) tiles[x++] = new ListsCard(i);
     }
   }
+  tiles[x++] = new Padding(padding: EdgeInsets.all(25.0));
   return tiles;
 }
 
