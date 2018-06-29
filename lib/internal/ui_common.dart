@@ -116,6 +116,7 @@ class _PeoplePage extends State<PeoplePage> {
                 lists.allLists[index].updatePersonPaid(i, val);
                 setState(() {
                   _people = lists.allLists[index].people;
+                  updateStuff();
                 });
                 writeData();
               }),
@@ -123,6 +124,7 @@ class _PeoplePage extends State<PeoplePage> {
               popupMenuBuilder(context, new DeletePersonDialog(index, i))
                   .then((Null n) => setState(() {
                         _people = lists.allLists[index].people;
+                        updateStuff();
                       })),
         );
       }

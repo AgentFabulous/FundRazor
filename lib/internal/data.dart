@@ -88,6 +88,11 @@ class Lists extends Object with _$ListsSerializerMixin {
   bool checkStatus() {
     recalculateAmount();
     bool isDone = true;
+    if (people.length == 0) {
+      isDone = false;
+      this.isDone = isDone;
+      return isDone;
+    }
     for (Person p in people) {
       if (!p.hasPaid) {
         isDone = false;
