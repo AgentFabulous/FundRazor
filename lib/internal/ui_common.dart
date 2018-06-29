@@ -41,8 +41,9 @@ class ListsCard extends StatelessWidget {
                   children: <Widget>[
                     new FlatButton(
                         onPressed: () {
-                          lists.allLists.removeAt(index);
-                          updateStuff();
+                          popupMenuBuilder(context, new DeleteListDialog(index)).then((Null n) {
+                            updateStuff();
+                          });
                         },
                         child: new Text("Delete",
                             style: new TextStyle(color: Colors.blue))),
@@ -313,6 +314,32 @@ class DeletePersonDialog extends StatelessWidget {
   }
 }
 
+
+class DeleteListDialog extends StatelessWidget {
+  final int index;
+
+  DeleteListDialog(this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    String _name = lists.allLists[index].name;
+    return new AlertDialog(title: new Text("Delete $_name?"), actions: <Widget>[
+      new FlatButton(
+        child: new Text('No'),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      new FlatButton(
+          child: new Text('Yes'),
+          onPressed: () {
+            lists.allLists.removeAt(index);
+            writeData();
+            Navigator.of(context).pop();
+          }),
+    ]);
+  }
+}
 /// Functions
 List<Widget> buildTiles(bool isDone, Widget extra) {
   int _len =
