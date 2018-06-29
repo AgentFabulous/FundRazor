@@ -16,47 +16,47 @@ class Page1 extends StatefulWidget {
 }
 
 class _Page1 extends State<Page1> {
-
   List<Widget> cards;
+
   Widget _totalAmountWidgetGen() {
     return new Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  new Container(
-                    child: new Text("Current amount",
-                        style: new TextStyle(fontSize: 20.0, color: Colors.grey),
-                        textAlign: TextAlign.center),
-                    padding: EdgeInsets.only(top: 80.0),
-                  ),
-                  new Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        new Container(
-                          child: new Text("\$",
-                              style: new TextStyle(fontSize: 20.0),
-                              textAlign: TextAlign.center),
-                          padding: EdgeInsets.only(top: 0.0, bottom: 100.0),
-                        ),
-                        new Padding(padding: EdgeInsets.all(2.0)),
-                        new Container(
-                          child: new Text("99999",
-                              style: new TextStyle(fontSize: 50.0),
-                              textAlign: TextAlign.center),
-                          padding: EdgeInsets.only(top: 20.0, bottom: 100.0),
-                        ),
-                      ]),
-    ]);
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          new Container(
+            child: new Text("Current amount",
+                style: new TextStyle(fontSize: 20.0, color: Colors.grey),
+                textAlign: TextAlign.center),
+            padding: EdgeInsets.only(top: 80.0),
+          ),
+          new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Container(
+                  child: new Text("\$",
+                      style: new TextStyle(fontSize: 20.0),
+                      textAlign: TextAlign.center),
+                  padding: EdgeInsets.only(top: 0.0, bottom: 100.0),
+                ),
+                new Padding(padding: EdgeInsets.all(2.0)),
+                new Container(
+                  child: new Text("99999",
+                      style: new TextStyle(fontSize: 50.0),
+                      textAlign: TextAlign.center),
+                  padding: EdgeInsets.only(top: 20.0, bottom: 100.0),
+                ),
+              ]),
+        ]);
   }
 
   void triggerSetState() {
-    setState((){
+    setState(() {
       cards = buildTiles(isDone, _totalAmountWidgetGen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    cards = buildTiles(isDone,_totalAmountWidgetGen());
+    cards = buildTiles(isDone, _totalAmountWidgetGen());
     var column = new Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: cards,

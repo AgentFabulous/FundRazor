@@ -27,8 +27,7 @@ Future<File> get _localFile async {
 Future<int> restoreData() async {
   try {
     final file = await _localFile;
-    if (file != null)
-      fileContents = await file.readAsString();
+    if (file != null) fileContents = await file.readAsString();
     if (fileContents != null) {
       print("Reading...\n" + fileContents);
       Map listsMap = json.decode(fileContents);
@@ -57,7 +56,8 @@ class AllLists extends Object with _$AllListsSerializerMixin {
     allLists.add(l);
   }
 
-  factory AllLists.fromJson(Map<String, dynamic> json) => _$AllListsFromJson(json);
+  factory AllLists.fromJson(Map<String, dynamic> json) =>
+      _$AllListsFromJson(json);
 }
 
 @JsonSerializable()
@@ -79,7 +79,7 @@ class Lists extends Object with _$ListsSerializerMixin {
 
   void recalculateAmount() {
     int pLen = people.length;
-    recalculatedAmount = originalAmount.toInt() ~/ ((pLen == 0)?1:pLen);
+    recalculatedAmount = originalAmount.toInt() ~/ ((pLen == 0) ? 1 : pLen);
   }
 
   bool checkStatus() {
@@ -118,6 +118,7 @@ class Lists extends Object with _$ListsSerializerMixin {
 class Person extends Object with _$PersonSerializerMixin {
   bool hasPaid;
   String name;
+
   Person(this.name) {
     hasPaid = false;
   }

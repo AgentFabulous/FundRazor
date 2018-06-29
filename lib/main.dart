@@ -31,36 +31,29 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: new PageView(
-            children: [
-              new Page0(),
-              new Page1(),
-              new Page2(),
-            ],
-            controller: pageControl,
-            onPageChanged: onPageChange
-        ),
-
-
+        body: new PageView(children: [
+          new Page0(),
+          new Page1(),
+          new Page2(),
+        ], controller: pageControl, onPageChanged: onPageChange),
         bottomNavigationBar: new BottomNavigationBar(
-              items: [
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.history),
-                  title: new Text("Ongoing"),
-                ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.done),
-                  title: new Text("Completed"),
-                ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.settings),
-                  title: new Text("Settings"),
-                ),
-              ],
-              onTap: navTapped,
-              currentIndex: page,
-            )
-        );
+          items: [
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.history),
+              title: new Text("Ongoing"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.done),
+              title: new Text("Completed"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.settings),
+              title: new Text("Settings"),
+            ),
+          ],
+          onTap: navTapped,
+          currentIndex: page,
+        ));
   }
 
   @override
@@ -69,24 +62,24 @@ class _MainPageState extends State<MainPage> {
     pageControl = new PageController();
     restoreData().then((result) {
       setState(() {});
-    }
-    );
+    });
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     pageControl.dispose();
     writeData();
   }
 
-  void onPageChange(int page){
-    setState((){
+  void onPageChange(int page) {
+    setState(() {
       this.page = page;
     });
   }
 
-  void navTapped (int page) {
-    pageControl.animateToPage(page, duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  void navTapped(int page) {
+    pageControl.animateToPage(page,
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 }

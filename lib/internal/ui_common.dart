@@ -45,7 +45,8 @@ class ListsCard extends StatelessWidget {
                             style: new TextStyle(color: Colors.blue))),
                     new FlatButton(
                         onPressed: () {
-                          lists.allLists[index].isDone = !lists.allLists[index].isDone;
+                          lists.allLists[index].isDone =
+                              !lists.allLists[index].isDone;
                           if (lists.allLists[index].isDone)
                             page0Interactive.triggerSetState();
                           else
@@ -80,10 +81,11 @@ class CenterCard extends StatelessWidget {
 }
 
 List<Widget> buildTiles(bool isDone, Widget extra) {
-  int _len = (extra != null)?(calculateLength(isDone)+1):calculateLength(isDone);
+  int _len =
+      (extra != null) ? (calculateLength(isDone) + 1) : calculateLength(isDone);
   int x = 0;
-  List<Widget> tiles = new List<Widget>(_len+2);
-  if (extra!=null) {
+  List<Widget> tiles = new List<Widget>(_len + 2);
+  if (extra != null) {
     tiles[x++] = extra;
   }
   tiles[x++] = new Padding(padding: EdgeInsets.all(15.0));

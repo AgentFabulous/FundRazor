@@ -20,14 +20,14 @@ class _Page0 extends State<Page0> {
   final listsKey = GlobalKey<_Page0>();
 
   void triggerSetState() {
-    setState((){
+    setState(() {
       cards = buildTiles(isDone, null);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    cards = buildTiles(isDone,null);
+    cards = buildTiles(isDone, null);
     var column = new Column(
       key: listsKey,
       children: cards,
@@ -48,7 +48,7 @@ class _Page0 extends State<Page0> {
           onPressed: () {
             _fabMenuBuilder(context, new StatefulDialog()).then((Null n) {
               setState(() {
-                cards = buildTiles(isDone,null);
+                cards = buildTiles(isDone, null);
               });
             });
           },
@@ -63,7 +63,6 @@ Future<Null> _fabMenuBuilder(BuildContext context, Widget child) async {
       barrierDismissible: false,
       builder: (BuildContext context) => child);
 }
-
 
 class StatefulDialog extends StatefulWidget {
   _StatefulDialog createState() => new _StatefulDialog();

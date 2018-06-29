@@ -9,10 +9,7 @@ int calculateLength(bool isDone) {
   for (int i = 0; i < lists.allLists.length; i++) {
     if (isDone) {
       if (lists.allLists[i].isDone) _len++;
-    }
-    else
-      if (!lists.allLists[i].isDone) _len++;
+    } else if (!lists.allLists[i].isDone) _len++;
   }
   return _len;
 }
-
