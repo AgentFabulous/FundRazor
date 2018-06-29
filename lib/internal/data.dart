@@ -20,7 +20,6 @@ Future<String> get _localPath async {
 Future<File> get _localFile async {
   final path = await _localPath;
   String _fileName = '$path/$dataJSON';
-  print("Accesing $_fileName");
   return File(_fileName);
 }
 
@@ -29,7 +28,6 @@ Future<int> restoreData() async {
     final file = await _localFile;
     if (file != null) fileContents = await file.readAsString();
     if (fileContents != null) {
-      print("Reading...\n" + fileContents);
       Map listsMap = json.decode(fileContents);
       lists = new AllLists.fromJson(listsMap);
     }
@@ -42,7 +40,6 @@ Future<int> restoreData() async {
 Future<File> writeData() async {
   final file = await _localFile;
   fileContents = json.encode(lists);
-  print("Writing...\n" + fileContents);
   return file.writeAsString(fileContents);
 }
 

@@ -136,13 +136,6 @@ class _StatefulDialog extends State<StatefulDialog> {
           onPressed: () {
             if (_formKey.currentState.validate()) {
               Navigator.of(context).pop();
-              debugPrint("Data valid!" +
-                  "\nName: " +
-                  _name +
-                  "\nAmount: " +
-                  _amount.toString() +
-                  "\nDate: " +
-                  _date.toString());
               lists.addToList(new Lists(_name, _amount, _date));
               writeData();
             }
@@ -160,7 +153,6 @@ class _StatefulDialog extends State<StatefulDialog> {
         lastDate: new DateTime(DateTime.now().year + 100));
 
     if (picked != null) {
-      print("Date Selected $_date");
       setState(() {
         _date = picked;
       });
