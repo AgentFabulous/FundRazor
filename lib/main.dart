@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:skarbnicaskarbnika/pages/Page0.dart';
-import 'package:skarbnicaskarbnika/pages/Page1.dart';
-import 'package:skarbnicaskarbnika/pages/Page2.dart';
-import 'package:skarbnicaskarbnika/internal/data.dart';
+import 'package:FundRazor/pages/Page0.dart';
+import 'package:FundRazor/pages/Page1.dart';
+import 'package:FundRazor/pages/Page2.dart';
+import 'package:FundRazor/internal/data.dart';
 
-void main() => runApp(new SkarbnicaSkarbnikaApp());
+void main() => runApp(new FundRazorApp());
 
 PageController pageControl;
 
-class SkarbnicaSkarbnikaApp extends StatelessWidget {
+class FundRazorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'SkarbnicaSkarbnika',
+      title: 'FundRazor',
       home: new MainPage(),
     );
   }

@@ -1,3 +1,3 @@
-# skarbnicaskarbnika
+# FundRazor
 
 A simple app to manage fundraising in a group.

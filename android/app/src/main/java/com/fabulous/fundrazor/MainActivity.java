@@ -1,4 +1,4 @@
-package com.example.skarbnicaskarbnika;
+package com.fabulous.fundrazor;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

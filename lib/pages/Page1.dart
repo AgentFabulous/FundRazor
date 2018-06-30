@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skarbnicaskarbnika/internal/ui_common.dart';
-import 'package:skarbnicaskarbnika/internal/common.dart';
+import 'package:FundRazor/internal/ui_common.dart';
+import 'package:FundRazor/internal/common.dart';
 
 bool isDone = true;
 var page1Interactive;

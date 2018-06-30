@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skarbnicaskarbnika/internal/data.dart';
-import 'package:skarbnicaskarbnika/internal/common.dart';
+import 'package:FundRazor/internal/data.dart';
+import 'package:FundRazor/internal/common.dart';
 import 'dart:async';
 
 /// Helper stateless classes
