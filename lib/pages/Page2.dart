@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skarbnicaskarbnika/internal/ui_common.dart';
 
 class Page2 extends StatelessWidget {
   @override
